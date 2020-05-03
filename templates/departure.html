@@ -3,9 +3,8 @@
     {% block container %}
 
     <h1 class="display-5 mt-4">Летим {{ departures[departure].replace("Из", "из") }}</h1>
-    <p class="mb-4">Найдено {{ selected_tours|length }} туров,
-      от {{ (selected_tours.values()|min(attribute='price')).price }} руб. до {{ (selected_tours.values()|max(attribute='price')).price }} руб.
-      и от {{ (selected_tours.values()|min(attribute='nights')).nights }} до {{ (selected_tours.values()|max(attribute='nights')).nights }} ночей</p>
+    <p class="mb-4">Найдено {{ tours_count }} {% if tours_count%10 == 1 %} тур{% elif tours_count%10 in (2, 3, 4) %} тура{% else %} туров{% endif %},
+      от {{ min_price }} руб. до {{ max_price }} руб. и от {{ min_days }} до {{ max_days }} ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
       {% for ind, tour in selected_tours.items() %}
